@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: nongche-files
+    runtime: node
+    plan: starter          # ดิสก์ถาวรใช้ได้เฉพาะแผนเสียเงิน
+    startCommand: node server.js
+    disk:
+      name: files
+      mountPath: /var/data
+      sizeGB: 50
+    envVars:
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: DB_FILE
+        value: /var/data/data.json
+      - key: SITE_NAME
+        value: nongche files
+      - key: BASE_URL
+        sync: false        # ใส่โดเมนของคุณในหน้า Render (เว้นว่างได้)
+      - key: MAX_MB
+        value: "30720"
+      - key: MAX_TOTAL_GB
+        value: "45"
+      - key: ADMIN_KEY
+        sync: false        # ใส่เองในหน้า Render
+      - key: SESSION_SECRET
+        generateValue: true
